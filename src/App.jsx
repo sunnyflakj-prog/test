@@ -1,43 +1,36 @@
 import { useState } from 'react';
-import './App.css';
 
-function App() {
-    const [count, setCount] = useState(0);
-    const [lightOn, setLightOn] = useState(false);
-    const [text, setText] = useState('Привет!');
-    const toggleText = () => {
-    setText(text === 'Привет!' ? 'Пока!' : 'Привет!');
-    };
+function ColorCycle() {
+  const [color, setColor] = useState('red');
+  const [mood, setMood] = useState('😀');
+
+  // Функция 1: смена цвета
+  const changeColor = () => {
+    const colors = ['red', 'green', 'blue', 'yellow'];
+    const currentIndex = colors.indexOf(color);
+    const nextIndex = (currentIndex + 1) % colors.length;
+    setColor(colors[nextIndex]);
+  };
+
+  // Функция 2: смена настроения — ВНЕ функции changeColor!
+  const changeMood = () => {
+    const moods = ['😀', '😐', '😢'];
+    const currentIndex = moods.indexOf(mood);
+    const nextIndex = (currentIndex + 1) % moods.length;
+    setMood(moods[nextIndex]);
+  };
+
   return (
-        <>
-
-    <div className="counter-section">
-     <h2>Счетчик просто 1</h2>
-      <p className="counter-value">{count}</p>
-      <button onClick={() => setCount(count + 1)}>+1</button>
-      <button onClick={() => setCount(count - 1)}>-1</button>
-    </div>
-
     <div>
+      <h2>Переключение цвета (цикл)</h2>
+      <div style={{ width: '100px', height: '100px', background: color, border: '1px solid #000' }}></div>
+      <button onClick={changeColor}>Сменить цвет</button>
 
-      <h2>Изменение текста</h2>
-      <p>{text}</p>
-      <button onClick={toggleText}>
-        Изменить текст
-      </button>    
-
+      <h2>Переключатель эмодзи</h2>
+      <p style={{ fontSize: '3rem' }}>{mood}</p>
+      <button onClick={changeMood}>Сменить настроение</button>
     </div>
-
-     <div>
-      <h2>Переключатель</h2>
-      <p>{lightOn ? 'Свет включен' : 'Свет выключен'}</p>
-      <button onClick={() => setLightOn(!lightOn)}>
-        {lightOn ? 'Выкл' : 'Вкл'}
-      </button>
-    </div>
-
-       </>
   );
 }
 
-export default App;
+export default ColorCycle;
