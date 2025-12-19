@@ -1,28 +1,23 @@
 import { useState } from 'react';
-function ClickHistory() {
-  const [history, setHistory] = useState([]);
+import './App.css';
 
-  const addPlus = () => {
-    setHistory([...history, '+1']);
-  };
+export default function Counter() {
+  const [count, setCount] = useState(0);
 
-  const addMinus = () => {
-    setHistory([...history, '-1']);
-  };
+  function handlePlus() {
+    setCount(count + 1);
+  }
+
+  function handleMinus() {
+    setCount(count - 1);
+  }
 
   return (
-    <div>
-      <h2>История кликов</h2>
-      <button onClick={addPlus}>+1</button>
-      <button onClick={addMinus} style={{ marginLeft: '10px' }}>-1</button>
-      <div style={{ marginTop: '10px' }}>
-        <h3>История:</h3>
-        <pre style={{ background: '#d70303ff', padding: '10px', borderRadius: '4px' }}>
-          {JSON.stringify(history, null, 2)}
-        </pre>
-      </div>
+    <div className="counter-section">
+      <p className="counter-value">{count}</p>
+      <button onClick={handleMinus}>-1</button>
+      <button onClick={handlePlus}>+1</button>
+    
     </div>
   );
 }
-
-export default ClickHistory;
