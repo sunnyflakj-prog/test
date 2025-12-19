@@ -7,6 +7,7 @@ function App() {
 
   return (
         <>
+    <h2>Счетчик</h2>   
     <div className="counter-section">
       <p className="counter-value">{count}</p>
       <button onClick={() => setCount(count + 1)}>+1</button>
